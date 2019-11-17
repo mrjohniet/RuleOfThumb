@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+$background-color: #0e0e0e;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Lato, "Helvetica Neue", sans-serif;background:$background-color; }
+.row{margin:0}
+
+@media (max-width: 968px) {
+    body{
+      font-size: 14px;
+    }
+    h1,h2,p,span,a{font-size: 90%!important;}
+  }

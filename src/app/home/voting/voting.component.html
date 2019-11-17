@@ -1,0 +1,66 @@
+
+<div class="voting-container">
+
+    <div *ngIf="visibilidadMensaje" class=" row speak-out-container">
+        <div class="col-3">
+            <span class="span-speak">Speak out.Be Heard.</span>
+            <h2><b>Be Counted.</b></h2>
+        </div>
+        <div class="col-8 d-flex align-items-center">
+            <p>{{description}}</p>
+        </div>
+        <div class="col-1 d-flex text-center justify-content-center align-items-center">
+            <span style="cursor: pointer;font-size: 1.25rem;" (click)="visibilidadMensaje=false">X</span>
+        </div>
+    </div>
+    <h1 class="votes-title">Votes</h1>
+    <div class="row" [formGroup]="formCharacters">
+        <div *ngFor="let item of characters;let i=index" formArrayName="characters" class="col-lg-6 mt-4" [ngClass]="{'no-padding-left':i%2 == 0,'no-padding-right':i%2!=0}">
+            <div class="background"></div>
+            <div formGroupName="{{i}}" class="character-container"
+            [style.backgroundImage]="'url(assets/images/' + item.image +')'">
+            <div class="row character-info">
+                    <div class="col-1" style="padding: 0.5rem 0;color: white;">
+                        <div class="vote-indicator" [ngClass]="{'label-upvote':formCharacters.controls.characters.at(i).controls.upvotes.value >=
+                                          formCharacters.controls.characters.at(i).controls.downvotes.value,
+                                          'label-downvote':formCharacters.controls.characters.at(i).controls.upvotes.value < formCharacters.controls.characters.at(i).controls.downvotes.value  }">
+                            <i class="material-icons thumbs-icon" >
+                                    {{formCharacters.controls.characters.at(i).controls.upvotes.value >= formCharacters.controls.characters.at(i).controls.downvotes.value ? 'thumb_up':'thumb_down'}} 
+                            </i>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <h1 class="name">{{item.name}}</h1>
+                        <small><b>1 month ago</b>&nbsp;in&nbsp;{{item.category}}</small>
+                        <p>{{item.description}}</p>
+                        <div *ngIf="formCharacters.controls.characters.at(i).controls.executedVote.value==false" class="d-flex flex-row">
+                           
+                                <input type="radio" name="vote" value="true" id="upvote{{i}}" formControlName="vote"/>
+                                <label class="label-upvote" for="upvote{{i}}"><i class="material-icons thumbs-icon">thumb_up </i></label>
+                               
+                                <input type="radio"  name="vote" value="false" id="downvote{{i}}"formControlName="vote" />
+                                <label class="label-downvote" for="downvote{{i}}"><i class="material-icons thumbs-icon">thumb_down </i></label>
+
+                                <button class="vote-now" (click)="vote(formCharacters.controls.characters.at(i).controls.vote.value,i)">Vote Now</button>
+                            
+                        </div>
+                        <div *ngIf="formCharacters.controls.characters.at(i).controls.executedVote.value==true">
+                            <p >Thanks for voting!</p>
+                            <button class="vote-now" (click)="restartVote(i)">Vote Again</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row vote-container">
+                    <div class="total-upvotes" [style.width]="(formCharacters.controls.characters.at(i).controls.upvotes.value*100)/formCharacters.controls.characters.at(i).controls.totalVotes.value+'%'" >
+                            <i class="material-icons thumbs-icon">thumb_up </i>&nbsp;
+                            {{(formCharacters.controls.characters.at(i).controls.upvotes.value*100)/(formCharacters.controls.characters.at(i).controls.totalVotes.value)| number:'1.1-1'}}%
+                    </div>
+                    <div class="total-downvotes" [style.width]="(formCharacters.controls.characters.at(i).controls.downvotes.value*100)/formCharacters.controls.characters.at(i).controls.totalVotes.value+'%'">
+                            <i class="material-icons thumbs-icon">thumb_down </i>&nbsp;    
+                            {{(formCharacters.controls.characters.at(i).controls.downvotes.value*100)/(formCharacters.controls.characters.at(i).controls.totalVotes.value)| number:'1.1-1'}}%
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

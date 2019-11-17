@@ -1,0 +1,30 @@
+    <div class="row container-featured">
+        <div class="col-xl-6 ">
+            <div class="description">
+                <span class="text">What's your opinion on</span>
+                <h1 class="huge-text">{{dataCharacter.name}}</h1>
+                <p class="text">{{dataCharacter.description}}</p>
+                <span>
+                    <fa-icon [icon]="faWikipediaW"></fa-icon>
+                <a [attr.href]="dataCharacter.link" target="_blank">&nbsp;More Information</a>
+                </span>
+                <h2 class="huge-text-2">What's your verdict?</h2>
+            </div>
+            <div class="row votes-container" style="width: 100%">
+                <div class="col-6 text-center upvote">
+                        <i class="material-icons thumbs-icon">thumb_up </i>
+                </div>
+                <div class="col-6 text-center downvote">
+                        <i class="material-icons thumbs-icon">thumb_down </i>
+                </div>
+            </div>
+        </div>   
+    </div>
+    <div class="row closure-bar">
+        <div class="col-4 closure-col-1 justify-content-end">
+            <span>CLOSING IN</span>
+        </div>
+        <div class="col-8 closure-col-2">
+            <span><b>22</b> days</span>
+        </div>
+    </div>

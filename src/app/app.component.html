@@ -1,0 +1,15 @@
+
+<div class="contenedor">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="row menu">
+    <div class="col-lg-6 col-2">
+      <h2 class="title"><a [routerLink]="'home'">Rule of Thumb</a></h2>
+    </div>
+    <div class="col-lg-6 col-10 d-flex flex-row justify-content-around">
+          <a [routerLink]="'past-trials'" class="menu-item">Past Trials</a>
+          <a [routerLink]="'how-it-works'" class="menu-item">How It Works</a>
+          <a [routerLink]="'log-in'" class="menu-item">Log In / Sign Up</a>
+    </div>
+</div>
